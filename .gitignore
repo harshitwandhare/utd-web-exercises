@@ -1,2 +1,4 @@
+# Submission archives are built on demand, not tracked.
+dist/
 *.zip
 .DS_Store

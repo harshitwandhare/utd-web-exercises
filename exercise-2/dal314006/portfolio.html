@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harshit Wandhare | Portfolio</title>
+  <meta name="description" content="Portfolio of Harshit Wandhare, MS Computer Science student at UT Dallas.">
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Harshit Wandhare</h1>
+    <p class="tagline">Software engineer. MS Computer Science student at UT Dallas.</p>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="about-body">
+        <figure class="portrait">
+          <img src="https://placehold.co/150" alt="Placeholder headshot of Harshit Wandhare" width="150" height="150">
+          <figcaption>Harshit Wandhare, Richardson, TX</figcaption>
+        </figure>
+        <div>
+          <p>
+            I am a software engineer with three years of production experience, now studying for an
+            MS in Computer Science at UT Dallas on the Intelligent Systems track. Before graduate
+            school I spent two years at Reliance Jio Platforms, where I ran daily scrum for a
+            30-engineer program and owned two modules end to end, and then a year as the only
+            engineer at a three-person startup in Germany, where I built the web platform, the
+            React Native app, the data models and the CI that shipped them.
+          </p>
+          <p>
+            Most of what I enjoy sits on the backend: data models, APIs, and the infrastructure that
+            keeps them honest. I write a lot of tests, and I like systems that a stranger can verify
+            without taking my word for anything.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="project-grid">
+
+        <article class="project">
+          <h3>Job Sentinel</h3>
+          <p>
+            A local-first career platform that collects job postings from several sources, scores
+            how well each one fits a profile using a local language model, and tracks the whole
+            application pipeline from saved posting to offer. No user data leaves the machine it
+            runs on.
+          </p>
+          <ul>
+            <li>FastAPI backend with a Next.js interface and a Typer command line client</li>
+            <li>Browser extension that clips a posting straight into the tracker</li>
+            <li>Over 500 tests and security scanning gates in continuous integration</li>
+          </ul>
+          <p><a class="more" href="https://github.com/harshitwandhare/job-sentinel">Learn More</a></p>
+        </article>
+
+        <article class="project">
+          <h3>ATLAS</h3>
+          <p>
+            A multi-agent orchestration system for research work. An orchestrator routes a goal to
+            the right team of specialist agents, and a separate critic agent checks the result
+            before anything is marked done.
+          </p>
+          <ul>
+            <li>Three memory tiers: an episodic ledger, a semantic store and versioned playbooks</li>
+            <li>Three interchangeable runtimes behind one typed protocol</li>
+            <li>Actions that touch the host machine are gated in code, not in prompts</li>
+          </ul>
+          <p><a class="more" href="https://github.com/harshitwandhare/atlas-ra">Learn More</a></p>
+        </article>
+
+        <article class="project">
+          <h3>Parkify</h3>
+          <p>
+            An automated parking system that reads vehicle number plates from camera frames. I led
+            the technical side of this undergraduate project: dataset collection, model selection,
+            training and the integration that joined three separate pieces into one pipeline.
+          </p>
+          <ul>
+            <li>YOLOv5 plate detector trained to 95.45% mAP on a custom dataset</li>
+            <li>Character recognition CNN over 36 classes at 89.66% accuracy</li>
+            <li>OpenCV preprocessing for deskew and character segmentation</li>
+          </ul>
+          <p>
+            <a class="more" href="https://harshitwandhare.com/papers/number-plate-recognition.pdf"
+               target="_blank" rel="noopener">Learn More</a>
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>The fastest way to reach me is this form, or email directly.</p>
+      <form class="contact-form" action="#" method="post">
+        <p class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </p>
+        <p class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </p>
+        <p class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </p>
+        <p>
+          <button type="submit">Send message</button>
+        </p>
+      </form>
+    </section>
+
+  </main>
+
+  <aside>
+    <h2>Currently</h2>
+    <p>
+      Studying at UT Dallas and looking for a Summer 2027 software or AI/ML engineering
+      internship.
+    </p>
+    <h3>Tools I reach for</h3>
+    <ul class="tool-list">
+      <li>Python, TypeScript, Java, SQL</li>
+      <li>FastAPI, Node.js, PostgreSQL, Redis</li>
+      <li>React, Next.js, React Native</li>
+      <li>AWS, Docker, GitHub Actions</li>
+    </ul>
+    <h3>Learning right now</h3>
+    <p>Rust, mostly to understand where the borrow checker changes how I design things.</p>
+  </aside>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Harshit Wandhare</p>
+    <ul class="social-list">
+      <li><a href="https://github.com/harshitwandhare">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/harshit-wandhare-a088201aa">LinkedIn</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
