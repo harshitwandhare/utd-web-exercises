@@ -11,9 +11,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  /* min-height, not height: when the six boxes need more room than the
-     viewport has, the container grows past it and the page scrolls. A fixed
-     height would leave the overflow hidden below the fold. */
+  /* A fixed height would hide the overflow once the six boxes need more room
+     than the window has. min-height lets the container grow past the viewport
+     so the page scrolls instead. */
   min-height: 100vh;
 }
 
@@ -22,8 +22,8 @@ body {
   height: 100px;
   border-top: 1px solid #687291;
   text-align: center;
-  /* A flex item shrinks by default, which would squash the boxes in a short
-     window instead of scrolling. */
+  /* Flex items shrink by default, which would squash the boxes in a short
+     window rather than scrolling. */
   flex-shrink: 0;
 }
 

@@ -1,29 +1,31 @@
-/* Portfolio stylesheet, Exercise 2 Problem 2. */
-
-/* ---------------------------------------------------------------- palette */
+/* Styles for portfolio.html. Web-safe families only, since the exercise rules
+   out linking an external stylesheet such as Google Fonts. */
 
 :root {
-  --paper: #fbfaf8;
-  --panel: #f3f0ea;
-  --ink: #1d1a16;
-  --ink-soft: #59524a;
+  --bg: #fbfaf8;
+  --card: #ffffff;
+  --sidebar: #f3f0ea;
+  --text: #1d1a16;
+  --muted: #59524a;
   --line: #e0dad0;
   --accent: #8a4b1f;
 }
 
-/* ------------------------------------------------------------------- base */
+html {
+  /* Set here rather than on body so that rem stays tied to it. */
+  font-size: 17px;
+}
 
 body {
   margin: 0;
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--bg);
+  color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 17px;
   line-height: 1.6;
 
-  /* The page shell is a grid. One column while the window is narrow; the
-     sidebar moves alongside the main column further down, once there is room
-     for both. Named areas keep the two arrangements readable side by side. */
+  /* The page itself is the grid, so header, main, aside and footer stay direct
+     children of body. Narrow windows get one column; the wide layout at the
+     bottom of this file swaps in a second set of areas. */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -36,8 +38,8 @@ body {
 h1,
 h2,
 h3 {
-  line-height: 1.2;
   margin: 0 0 0.4em;
+  line-height: 1.2;
 }
 
 h1 {
@@ -64,12 +66,12 @@ a:focus {
 }
 
 img {
-  /* Nothing on the page may force the window to scroll sideways. */
+  /* Keeps a wide image from pushing the page sideways on a phone. */
   max-width: 100%;
   height: auto;
 }
 
-/* ----------------------------------------------------------------- header */
+/* Header and navigation */
 
 .site-header {
   grid-area: header;
@@ -79,11 +81,11 @@ img {
 
 .tagline {
   margin: 0 0 1.25rem;
-  color: var(--ink-soft);
+  color: var(--muted);
 }
 
-/* A row of links is one-dimensional, so flex rather than grid. It wraps to a
-   second line on a narrow screen instead of overflowing. */
+/* A row of links is one direction only, so flex suits it better than grid. It
+   wraps to a second line instead of overflowing when the window is narrow. */
 .nav-list {
   display: flex;
   flex-wrap: wrap;
@@ -92,7 +94,7 @@ img {
   padding: 0;
   list-style: none;
   font-family: Verdana, Geneva, sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -108,7 +110,7 @@ img {
   border-bottom-color: var(--accent);
 }
 
-/* ------------------------------------------------------------------- main */
+/* Main column */
 
 main {
   grid-area: main;
@@ -119,8 +121,6 @@ main section + section {
   margin-top: 2.5rem;
 }
 
-/* ------------------------------------------------------------------ about */
-
 .about-body {
   display: flex;
   flex-wrap: wrap;
@@ -129,8 +129,8 @@ main section + section {
 }
 
 .portrait {
-  /* Fixed at its natural width beside the text, full width above it once the
-     two no longer fit on one line. */
+  /* Holds its natural width beside the text and moves above it once the two no
+     longer fit on one line. */
   flex: 0 0 150px;
   margin: 0;
   text-align: center;
@@ -142,22 +142,22 @@ main section + section {
 
 .portrait figcaption {
   margin-top: 0.5rem;
-  color: var(--ink-soft);
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
-.about-body > div {
+.bio {
   flex: 1 1 20rem;
 }
 
-.about-body p:first-child {
+.bio p:first-child {
   margin-top: 0;
 }
 
-/* --------------------------------------------------------------- projects */
+/* Projects */
 
-/* Cards fill the row and rewrap by themselves, so the column count follows the
-   window width without a breakpoint for each step. */
+/* auto-fit lets the cards decide the column count from the width available, so
+   three columns become two and then one without a breakpoint for each step. */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -169,7 +169,7 @@ main section + section {
   padding: 1.25rem;
   border: 1px solid var(--line);
   border-top: 3px solid var(--accent);
-  background-color: #fff;
+  background-color: var(--card);
 }
 
 .project:hover {
@@ -183,7 +183,7 @@ main section + section {
 .project ul {
   margin: 0 0 1rem;
   padding-left: 1.1rem;
-  color: var(--ink-soft);
+  color: var(--muted);
   font-size: 0.95rem;
 }
 
@@ -196,13 +196,10 @@ main section + section {
 }
 
 .more {
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
-/* ---------------------------------------------------------------- contact */
+/* Contact form */
 
 .contact-form {
   max-width: 32rem;
@@ -216,20 +213,17 @@ main section + section {
 }
 
 .field label {
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .field input,
 .field textarea {
   padding: 0.5rem 0.6rem;
   border: 1px solid var(--line);
-  background-color: #fff;
-  font: inherit;
+  background-color: var(--card);
   color: inherit;
+  font: inherit;
 }
 
 .field input:focus,
@@ -242,24 +236,24 @@ main section + section {
   padding: 0.55rem 1.4rem;
   border: 1px solid var(--accent);
   background-color: var(--accent);
-  color: var(--paper);
+  color: var(--bg);
   font: inherit;
   cursor: pointer;
 }
 
 .contact-form button:hover,
 .contact-form button:focus {
-  background-color: var(--paper);
+  background-color: var(--bg);
   color: var(--accent);
 }
 
-/* ------------------------------------------------------------------ aside */
+/* Sidebar */
 
 aside {
   grid-area: aside;
   padding: 1.5rem;
-  background-color: var(--panel);
   border-top: 1px solid var(--line);
+  background-color: var(--sidebar);
 }
 
 aside h2 {
@@ -274,22 +268,22 @@ aside h3 {
 .tool-list {
   margin: 0;
   padding-left: 1.1rem;
-  color: var(--ink-soft);
+  color: var(--muted);
   font-size: 0.95rem;
 }
 
-/* ----------------------------------------------------------------- footer */
+/* Footer */
 
 .site-footer {
   grid-area: footer;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5rem 1.5rem;
   padding: 1.25rem 1.5rem;
   border-top: 1px solid var(--line);
-  color: var(--ink-soft);
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
@@ -305,9 +299,9 @@ aside h3 {
   list-style: none;
 }
 
-/* ------------------------------------------------------- wider viewports */
-
-@media (min-width: 60rem) {
+/* Wide windows: the sidebar moves next to the main column. 900px is where the
+   two-column measure stops feeling cramped with this type size. */
+@media (min-width: 900px) {
   body {
     grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
     grid-template-areas:

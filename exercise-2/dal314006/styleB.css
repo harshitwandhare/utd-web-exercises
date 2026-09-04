@@ -18,8 +18,8 @@ body {
   padding: 10px;
   border-left: 10px dotted #D0D0FF;
   background-color: #eeeff2;
-  /* Without this the row would compress to fit a narrow window. The row is
-     meant to run off the right edge instead. */
+  /* Without this the row squeezes itself into a narrow window. It should run
+     off the right edge and leave the page to scroll. */
   flex-shrink: 0;
 }
 
@@ -29,9 +29,9 @@ body {
   color: goldenrod;
 }
 
-/* Fixed rather than absolute, so F stays in the corner of the window while the
-   row scrolls sideways behind it. A fixed box is not a flex item, so it also
-   drops out of the row above. */
+/* Absolute positioning would anchor F to the page and let it scroll away, so
+   fixed it is. A fixed box is not a flex item either, which is what takes F out
+   of the row above without any extra markup. */
 #box-f {
   position: fixed;
   right: 0;
