@@ -157,10 +157,12 @@ main section + section {
 /* Projects */
 
 /* auto-fit lets the cards decide the column count from the width available, so
-   three columns become two and then one without a breakpoint for each step. */
+   three columns become two and then one without a breakpoint for each step. The
+   min() keeps the 16rem floor from outgrowing a narrow phone and pushing the
+   page sideways. */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
   gap: 1.25rem;
   margin-top: 1.25rem;
 }

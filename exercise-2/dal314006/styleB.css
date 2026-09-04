@@ -15,6 +15,10 @@ body {
 .box {
   width: 100px;
   height: 150px;
+  /* Every side, so the letter clears the top and left inside edges alike. The
+     brief highlights the text area behind D to show it sitting inset from the
+     top of the box, which only happens with padding above it. Content stays
+     100x150 and the box renders 130x170, as the box-model note requires. */
   padding: 10px;
   border-left: 10px dotted #D0D0FF;
   background-color: #eeeff2;
