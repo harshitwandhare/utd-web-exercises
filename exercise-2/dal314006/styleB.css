@@ -15,11 +15,11 @@ body {
 .box {
   width: 100px;
   height: 150px;
-  /* Every side, so the letter clears the top and left inside edges alike. The
-     brief highlights the text area behind D to show it sitting inset from the
-     top of the box, which only happens with padding above it. Content stays
-     100x150 and the box renders 130x170, as the box-model note requires. */
-  padding: 10px;
+  /* Left only, which puts the 10px between the letter and the inside edge the
+     letter actually sits against and leaves the box 150px tall, the height
+     marked in the specification. The content box stays 100x150 and the box
+     renders 120x150 once the dotted border is added. */
+  padding-left: 10px;
   border-left: 10px dotted #D0D0FF;
   background-color: #eeeff2;
   /* Without this the row squeezes itself into a narrow window. It should run
