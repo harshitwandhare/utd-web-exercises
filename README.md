@@ -26,7 +26,19 @@ cards; flexbox handles the navigation, the about block and the footer.
 - [portfolio.html](exercise-2/dal314006/portfolio.html), [portfolio.css](exercise-2/dal314006/portfolio.css)
 - Live: https://harshitwandhare.github.io/utd-web-exercises/exercise-2/dal314006/portfolio.html
 
-Both HTML files pass the W3C validator and all three stylesheets pass the W3C CSS
+## Exercise 3: JavaScript
+
+Ten functions over arrays, callbacks, spread and rest, written into the starter
+file the course provides. The starter's stubs, JSDoc and sample-usage block are
+left as they came; only the function bodies are mine.
+
+- [e3.js](exercise-3/dal314006/e3.js), [index.html](exercise-3/dal314006/index.html)
+- Live: https://harshitwandhare.github.io/utd-web-exercises/exercise-3/dal314006/index.html
+  (open the browser console)
+
+Run it with `node exercise-3/dal314006/e3.js` to see all fourteen sample lines.
+
+Both Exercise 2 HTML files pass the W3C validator and all three stylesheets pass the W3C CSS
 validator with no errors. Checked in Firefox, as the course requires.
 
 The full portfolio this coursework summarises is at https://harshitwandhare.com.
