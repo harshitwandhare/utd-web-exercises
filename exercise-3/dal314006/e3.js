@@ -11,8 +11,7 @@
  * @returns {string[]}
  */
 function generateIds(titles) {
-    // Split on a run of whitespace, since a title typed with a double space
-    // between words would otherwise come back with two hyphens in it.
+    // Trim and split on runs of whitespace, so odd spacing adds no empty words.
     return titles.map(title => title.trim().toLowerCase().split(/\s+/).join("-"));
 }
 
@@ -68,8 +67,7 @@ function showFormattedMessage(message, formatter) {
  * @returns {string[]}
  */
 function formatMenu(items, formatter) {
-    // map hands its callback the index and the whole array as well, so the
-    // formatter is called here with the one argument it expects.
+    // map would also hand the formatter the index and the array, so call it here.
     return items.map(item => formatter(item));
 }
 
@@ -114,8 +112,7 @@ function buildNavigation(sections, formatter) {
         .map(section => ({
             id: generateIds([section.title])[0],
             label: formatter(section.title),
-            // A copy. Pushing a class onto a navigation entry should leave the
-            // section it came from alone.
+            // A copy, so a later push on the entry cannot reach back into the section.
             classes: [...section.classes]
         }));
 }
