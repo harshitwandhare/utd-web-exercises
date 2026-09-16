@@ -38,6 +38,18 @@ left as they came; only the function bodies are mine.
 
 Run it with `node exercise-3/dal314006/e3.js` to see all fourteen sample lines.
 
+## Exercise 4: virtual DOM diff
+
+A `diff()` that walks two virtual DOM trees and makes the smallest set of real
+DOM changes that brings the page in line with the new one. Only `diff.js`
+differs from the starter; `index.html`, `index.css` and `vdoms.js` are the files
+as they were handed out.
+
+- [diff.js](exercise-4/dal314006/diff.js)
+- Live: https://harshitwandhare.github.io/utd-web-exercises/exercise-4/dal314006/index.html
+  (Render Initial DOM, then Update DOM; edit the index in `index.html` to pick a
+  different test case)
+
 Both Exercise 2 HTML files pass the W3C validator and all three stylesheets pass the W3C CSS
 validator with no errors. Checked in Firefox, as the course requires.
 

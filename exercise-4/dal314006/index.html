@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="index.css">
+    <title>E4: Render and Diff</title>
+</head>
+<body>
+    <!-- 
+    INSTRUCTIONS:
+    1. Click "Render Initial DOM" to see the starting state
+    2. Click "Update DOM" to test your diff() implementation
+    3. Look for red text - that shows elements with class="updated"
+    4. Open browser DevTools Console to see any errors
+    -->
+    
+    <!-- This div will contain the created DOM tree-->
+    <div id="app"></div>
+    
+    <!-- Control buttons for testing -->
+    <div id="controls">
+        <button id="renderBtn">Render Initial DOM</button>
+        <button id="updateBtn">Update DOM</button>
+    </div> 
+
+    <!-- Load the test cases (virtual DOM data) -->
+    <script src="vdoms.js"></script>
+    
+    <!-- Load your createTree() and diff() functions -->
+    <script src="diff.js"></script>
+    
+    <script>
+      // Get the container where we'll mount the DOM
+      const app = document.getElementById("app");
+      
+      // Change the number below to test different scenarios
+      
+      const { before, after } = TEST_CASES[1]; // choose any index from 1 ... 7
+
+      // Track whether initial DOM has been rendered
+      let hasRendered = false;
+
+      // STEP 1: Create and Render Initial DOM Button
+      document.getElementById("renderBtn").addEventListener("click", () => {
+        if (!hasRendered) {
+          // This calls your createTree() function from diff.js
+          // createTree() should convert the virtual DOM to real DOM
+          const dom = createTree(before);
+          app.appendChild(dom);
+          hasRendered = true;
+          console.log("✅ Initial DOM rendered. Virtual DOM 'before':", before);
+        }
+      });
+
+      // STEP 2: Update DOM Button (tests your diff implementation)
+      document.getElementById("updateBtn").addEventListener("click", () => {
+        if (!hasRendered) {
+          alert("Please render the initial DOM first!");
+          return;
+        }
+        
+        console.log("🔄 Running diff algorithm...");
+        console.log("Old virtual DOM:", before);
+        console.log("New virtual DOM:", after);
+        
+        // This calls your diff() function in diff.js
+        // Your job is to implement diff() to update the real DOM
+        // to match the 'after' virtual DOM structure
+        diff(before, after, app, 0);
+        
+        console.log("✅ Diff completed! Look for red text (.updated class)");
+      });
+    </script>
+</body>
+</html>

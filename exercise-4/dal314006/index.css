@@ -1,0 +1,95 @@
+/* ===== Base Page Styles ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+#app {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  min-height: 50px;
+}
+
+/* ===== Text & List Styles ===== */
+h1, h2 {
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 4px 0;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Highlight Updated Nodes ===== */
+.updated {
+  color: red !important;
+  font-weight: bold;
+  /* transition: color 0.3s ease-in-out; */
+}
+
+/* Active + Updated links (Test Case 3) */
+a.active.updated {
+  background-color: #ffe0e0;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/* ===== Button Container ===== */
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ===== Button Styles ===== */
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+button:active {
+  background-color: #d0d0d0;
+}
+
+/* Render button (green theme) */
+#renderBtn {
+  background-color: #d9fdd3;
+  border-color: #a6dca3;
+}
+
+#renderBtn:hover {
+  background-color: #baf5ad;
+}
+
+/* Update button (blue theme) */
+#updateBtn {
+  background-color: #d3e4fd;
+  border-color: #a3c2dc;
+}
+
+#updateBtn:hover {
+  background-color: #adcdf5;
+}
