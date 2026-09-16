@@ -35,8 +35,7 @@ function createTree(vnode) {
  */
 function diff(oldVNode, newVNode, parentNode, index) {
 
-  // The real node the two vnodes describe. Undefined when nothing is mounted
-  // at this position yet, which is what Case 2 below handles.
+  // The real node these two vnodes describe, or undefined if nothing is there.
   const domNode = parentNode.childNodes[index];
 
   // Case 1: both are text (string), but may be different
@@ -55,15 +54,12 @@ function diff(oldVNode, newVNode, parentNode, index) {
 
   // Case 3: newVnode is nullish -> remove
   if (newVNode == null) {
-    if (domNode) {
-      parentNode.removeChild(domNode);
-    }
+    parentNode.removeChild(domNode);
     return;
   }
 
   // Case 4: Node type changed -> replace
-  // The typeof test catches text turning into an element or the other way
-  // round; the .type test catches one tag becoming another.
+  // typeof catches text swapping with an element, .type catches a tag change.
   if (typeof oldVNode !== typeof newVNode || oldVNode.type !== newVNode.type) {
     parentNode.replaceChild(createTree(newVNode), domNode);
     return;
