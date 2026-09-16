@@ -36,6 +36,9 @@ function createTree(vnode) {
 function diff(oldVNode, newVNode, parentNode, index) {
 
   // The real node these two vnodes describe, or undefined if nothing is there.
+  // index.html hands back the same before tree on every click, so a second
+  // click on Update DOM re-runs this against a DOM that has already moved on.
+  // That is why Cases 2 and 3 look before they append or remove.
   const domNode = parentNode.childNodes[index];
 
   // Case 1: both are text (string), but may be different
@@ -48,13 +51,20 @@ function diff(oldVNode, newVNode, parentNode, index) {
 
   // Case 2: oldVnode is nullish -> append new node to parent
   if (oldVNode == null && newVNode != null) {
-    parentNode.appendChild(createTree(newVNode));
+    const created = createTree(newVNode);
+    if (domNode) {
+      parentNode.replaceChild(created, domNode);
+    } else {
+      parentNode.appendChild(created);
+    }
     return;
   }
 
   // Case 3: newVnode is nullish -> remove
   if (newVNode == null) {
-    parentNode.removeChild(domNode);
+    if (domNode) {
+      parentNode.removeChild(domNode);
+    }
     return;
   }
 
