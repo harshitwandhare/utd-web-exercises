@@ -50,6 +50,17 @@ as they were handed out.
   (Render Initial DOM, then Update DOM; edit the index in `index.html` to pick a
   different test case)
 
+## Exercise 5: DOM events
+
+A `DatePicker` class driving two independent calendars on one page. One click
+listener per picker, on the containing div, so it survives the table being
+rebuilt on every navigation. `datepicker.html` and `datepicker.css` are the
+starter files, unmodified.
+
+- [DatePicker.js](exercise-5/dal314006/DatePicker.js)
+- Live: https://harshitwandhare.github.io/utd-web-exercises/exercise-5/dal314006/datepicker.html
+  (open the console to see the selection callback)
+
 Both Exercise 2 HTML files pass the W3C validator and all three stylesheets pass the W3C CSS
 validator with no errors. Checked in Firefox, as the course requires.
 

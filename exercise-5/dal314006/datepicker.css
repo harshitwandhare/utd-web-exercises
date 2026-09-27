@@ -1,0 +1,64 @@
+/* Starter styles for Exercise 5: DOM Events */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+}
+
+.datepicker {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.datepicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.datepicker-title {
+  font-weight: bold;
+}
+
+.datepicker button {
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+}
+
+.datepicker table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.datepicker th,
+.datepicker td {
+  width: 2.5rem;
+  height: 2.2rem;
+  padding: 0.2rem;
+}
+
+.datepicker th {
+  font-weight: bold;
+}
+
+.datepicker .day {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.datepicker .day:hover {
+  background-color: #eee;
+}
+
+.datepicker .outside-month {
+  color: #aaa;
+  cursor: default;
+}
+
+.datepicker .outside-month:hover {
+  background-color: transparent;
+}

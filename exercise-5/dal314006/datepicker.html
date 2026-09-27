@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 5: DOM Events</title>
+  <link rel="stylesheet" href="datepicker.css">
+</head>
+
+<body>
+  <h1>First DatePicker</h1>
+  <div id="datepicker1" class="datepicker"></div>
+
+  <h1>Second DatePicker</h1>
+  <div id="datepicker2" class="datepicker"></div>
+
+  <script src="DatePicker.js"></script>
+
+  <script>
+    'use strict';
+
+    const datePicker1 = new DatePicker('datepicker1',
+      function (id, selectedDate) {
+        console.log(
+          'DatePicker with id',
+          id,
+          'selected date:',
+          selectedDate.month + '/' +
+          selectedDate.day + '/' +
+          selectedDate.year
+        );
+      });
+
+    datePicker1.render(new Date());
+
+    const datePicker2 = new DatePicker('datepicker2',
+      function (id, selectedDate) {
+        console.log(
+          'DatePicker with id',
+          id,
+          'selected date:',
+          selectedDate.month + '/' +
+          selectedDate.day + '/' +
+          selectedDate.year
+        );
+      });
+
+    datePicker2.render(new Date(2010, 0, 1));
+  </script>
+</body>
+
+</html>
