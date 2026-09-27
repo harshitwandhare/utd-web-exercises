@@ -1,8 +1,8 @@
 'use strict';
 
 // Wrapped so the constants and the calendar helper stay out of the global
-// scope. DatePicker itself has to be reachable from the script tag in
-// datepicker.html, so that one name is published deliberately.
+// scope. DatePicker has to be reachable from the script tag in
+// datepicker.html, so that one name goes on window and nothing else does.
 (function () {
   const DAY_ABBREVIATIONS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
@@ -18,8 +18,7 @@
    * running Sunday to Saturday. The first and last weeks usually spill into
    * the neighbouring months, and those cells come back with inMonth false.
    *
-   * No DOM here on purpose. This is the whole calendar calculation, and it can
-   * be read, checked, and argued with on its own.
+   * No DOM here, so the calculation can be checked on its own.
    *
    * @param {number} year
    * @param {number} month - 0 for January, the way Date counts.
@@ -31,12 +30,12 @@
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstWeekday = new Date(year, month, 1).getDay();
 
-    // Four rows for a 28 day February that opens on a Sunday, six when a long
-    // month opens late in the week, five most of the time.
+    // Four rows when a 28 day February starts on a Sunday, six when a long
+    // month starts late in the week, five otherwise.
     const weekCount = Math.ceil((firstWeekday + daysInMonth) / 7);
 
     // Counting back from the 1st lands on the Sunday the grid starts from,
-    // in the previous month or even the previous year. Date works that out.
+    // which may fall in the previous month or the previous year.
     const cursor = new Date(year, month, 1 - firstWeekday);
     const weeks = [];
 
@@ -75,7 +74,7 @@
 
       // One listener, on the div itself, attached once. render() replaces what
       // is inside the div, so a listener on a button or a cell would be thrown
-      // away the first time anyone changed month. The div outlives all of it.
+      // away the first time anyone changed month.
       this.#container.addEventListener('click', (event) => this.#handleClick(event));
     }
 
@@ -111,12 +110,12 @@
       this.#container.replaceChildren(header, table);
     }
 
-    #createNavButton(label, step, description) {
+    #createNavButton(label, step, ariaLabel) {
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = label;
-      button.setAttribute('aria-label', description);
-      // Read on click. A kept reference would go stale on the next render.
+      button.setAttribute('aria-label', ariaLabel);
+      // Read on click, since a kept reference would go stale on the next render.
       button.dataset.step = step;
       return button;
     }
@@ -147,7 +146,7 @@
           if (!date.inMonth) {
             cell.classList.add('outside-month');
           }
-          // So the handler never has to parse the text it finds in the cell.
+          // The handler reads this rather than parsing the cell's text.
           cell.dataset.day = date.day;
           cell.textContent = date.day;
           row.append(cell);
@@ -160,8 +159,8 @@
     }
 
     /**
-     * Everything the div is clicked for arrives here: the two arrows and every
-     * cell in the table. What was hit decides which it was.
+     * Every click inside the div arrives here, from the two arrows and from
+     * every cell in the table.
      */
     #handleClick(event) {
       const target = event.target;
@@ -184,7 +183,7 @@
       }
     }
 
-    /** Move by whole months. December plus one is January, and Date knows it. */
+    /** Month -1 is December of the year before, month 12 is January of the next. */
     #shiftMonth(step) {
       this.render(new Date(this.#year, this.#month + step, 1));
     }
