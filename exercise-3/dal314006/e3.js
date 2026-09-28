@@ -21,7 +21,10 @@ function generateIds(titles) {
  * @returns {string[]}
  */
 function highlightImportant(titles) {
-    return generateIds(titles.filter(title => title.includes("Important")));
+    // Case-insensitive. Problem 3 says to ignore case and this one does not,
+    // which I first read as deliberate. It was not: a lowercase "important"
+    // counts too.
+    return generateIds(titles.filter(title => title.toLowerCase().includes("important")));
 }
 
 // Problem 3
