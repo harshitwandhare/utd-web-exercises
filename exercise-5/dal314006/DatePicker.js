@@ -148,7 +148,7 @@
       }
     }
 
-    // Month -1 and month 12 roll into the next year on their own.
+    // Month -1 and month 12 roll into the year either side on their own.
     #shiftMonth(step) {
       this.render(new Date(this.#year, this.#month + step, 1));
     }
