@@ -105,7 +105,7 @@
       );
 
       const table = document.createElement('table');
-      table.append(this.#createHeadRow(), this.#createDayCells());
+      table.append(this.#createTableHead(), this.#createTableBody());
 
       this.#container.replaceChildren(header, table);
     }
@@ -120,7 +120,7 @@
       return button;
     }
 
-    #createHeadRow() {
+    #createTableHead() {
       const head = document.createElement('thead');
       const row = document.createElement('tr');
 
@@ -134,7 +134,7 @@
       return head;
     }
 
-    #createDayCells() {
+    #createTableBody() {
       const body = document.createElement('tbody');
 
       for (const week of buildMonthGrid(this.#year, this.#month)) {
