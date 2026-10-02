@@ -95,8 +95,8 @@ button.remove-btn {
   font-size: 14px;
 }
 
-/* Added: the stand-in for a movie OMDb has no artwork for, sized like a poster
-   so a card with one still lines up with the rest. */
+/* Added: what shows when there is no poster, sized like one so the cards in a
+   row still line up. */
 .poster-missing {
   width: 100px;
   height: 148px;

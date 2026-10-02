@@ -57,17 +57,16 @@ function createRemoveButton(movie) {
 
   button.addEventListener('click', () => {
     removeFromWatchlist(movie.imdbID);
-    // Redraw rather than pull the one card out, so the count in the message
-    // and the empty state cannot drift from what is stored.
+    // Redraw rather than pull the one card out, so the count at the top stays
+    // in step with what is stored.
     render();
   });
 
   return button;
 }
 
-// OMDb says "N/A" when it has no artwork. It also hands back links that 404,
-// such as the Ultimate Edition of Batman v Superman, and those leave the alt
-// text sprawling across the card. Both end up as the same stand-in.
+// OMDb says "N/A" when it has no artwork, and also hands back links that 404,
+// such as the Ultimate Edition of Batman v Superman. Both get the stand-in.
 function createPoster(movie) {
   if (!movie.Poster || movie.Poster === 'N/A') {
     return createPosterPlaceholder();
@@ -92,7 +91,7 @@ function removeFromWatchlist(imdbID) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(kept));
 }
 
-// Anything could be under this key, so anything that is not an array is empty.
+// Whatever is sitting under this key, only an array counts.
 function readWatchlist() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));

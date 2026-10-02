@@ -11,7 +11,6 @@ const input = document.getElementById('searchInput');
 const message = document.getElementById('message');
 const movieList = document.getElementById('movieList');
 
-// Counts searches so a reply that arrives after a newer one can be dropped.
 let latestSearch = 0;
 
 form.addEventListener('submit', (event) => {
@@ -34,8 +33,8 @@ async function search(title) {
 
   const outcome = await askOmdb(title);
 
-  // Searching twice quickly can bring the first answer back last, and it would
-  // pile its cards under the ones already showing. Only the newest reply draws.
+  // Search twice quickly and the first answer can land last, piling its cards
+  // under the ones already showing.
   if (searchId !== latestSearch) {
     return;
   }
@@ -53,8 +52,7 @@ async function search(title) {
   }
 }
 
-// Returns either {movies} or {error}, so the caller does the talking to the
-// page and this does the talking to OMDb.
+// Hands back {movies} or {error}. Nothing in here touches the page.
 async function askOmdb(title) {
   try {
     const url = `${OMDB_URL}?apikey=${API_KEY}&s=${encodeURIComponent(title)}`;
@@ -124,9 +122,8 @@ function markAsSaved(button) {
   button.disabled = true;
 }
 
-// OMDb says "N/A" when it has no artwork. It also hands back links that 404,
-// such as the Ultimate Edition of Batman v Superman, and those leave the alt
-// text sprawling across the card. Both end up as the same stand-in.
+// OMDb says "N/A" when it has no artwork, and also hands back links that 404,
+// such as the Ultimate Edition of Batman v Superman. Both get the stand-in.
 function createPoster(movie) {
   if (!movie.Poster || movie.Poster === 'N/A') {
     return createPosterPlaceholder();
@@ -167,7 +164,7 @@ function isSaved(imdbID) {
   return readWatchlist().some((entry) => entry.imdbID === imdbID);
 }
 
-// Anything could be under this key, so anything that is not an array is empty.
+// Whatever is sitting under this key, only an array counts.
 function readWatchlist() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
