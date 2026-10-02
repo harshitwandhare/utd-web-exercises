@@ -61,6 +61,15 @@ starter files, unmodified.
 - Live: https://harshitwandhare.github.io/utd-web-exercises/exercise-5/dal314006/datepicker.html
   (open the console to see the selection callback)
 
+## Exercise 6: movie search
+
+Search OMDb, save what you like to a watchlist in localStorage, read it back on
+a second page. The starter markup and stylesheet are as they came, apart from
+two rules added to index.css for the stand-in shown when a poster is missing.
+
+- [index.js](exercise-6/dal314006/index.js), [watchlist.js](exercise-6/dal314006/watchlist.js)
+- Live: https://harshitwandhare.github.io/utd-web-exercises/exercise-6/dal314006/index.html
+
 Both Exercise 2 HTML files pass the W3C validator and all three stylesheets pass the W3C CSS
 validator with no errors. Checked in Firefox, as the course requires.
 
