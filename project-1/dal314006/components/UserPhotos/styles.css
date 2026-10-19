@@ -1,0 +1,26 @@
+.userphotos-photo {
+  padding: 8px 0;
+}
+
+/* Capped so photos of different sizes line up down the page. */
+.userphotos-image {
+  max-width: min(100%, 480px);
+  height: auto;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.userphotos-comments {
+  list-style: none;
+  margin: 8px 0 0;
+  padding-left: 12px;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.userphotos-comment {
+  margin-bottom: 12px;
+}
+
+.userphotos-divider {
+  margin: 16px 0;
+}
