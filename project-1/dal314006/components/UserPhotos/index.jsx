@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Divider, Typography } from '@mui/material';
 import { Link, useParams } from 'react-router';
 
@@ -72,10 +73,10 @@ function UserPhotos() {
   return (
     <section>
       {photos.map((photo, index) => (
-        <div key={photo._id}>
+        <Fragment key={photo._id}>
           {index > 0 && <Divider className="userphotos-divider" />}
           <Photo photo={photo} />
-        </div>
+        </Fragment>
       ))}
     </section>
   );
