@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "webServer.js",
+    "schema"
+  ],
+  "ignore": [
+    "node_modules",
+    "dist",
+    "test",
+    "public",
+    "components",
+    "modelData"
+  ],
+  "ext": "js"
+}

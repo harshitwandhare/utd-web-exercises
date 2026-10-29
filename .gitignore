@@ -1,3 +1,5 @@
+node_modules/
+
 # Submission archives are built on demand, not tracked.
 dist/
 *.zip

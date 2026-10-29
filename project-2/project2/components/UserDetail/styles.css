@@ -1,0 +1,9 @@
+/* Label above value, so a long description is not squeezed into a column. */
+.userdetail-fields dt {
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.userdetail-fields dd {
+  margin: 0;
+}

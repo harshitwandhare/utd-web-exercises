@@ -1,0 +1,4 @@
+/* NavLink adds this class on the user whose page is open. */
+.userlist-link.active {
+  background-color: rgba(0, 0, 0, 0.08);
+}
