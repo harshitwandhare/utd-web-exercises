@@ -21,27 +21,18 @@ function sendServerError(err, res) {
   return res.status(500).json({ error: 'Internal server error' });
 }
 
-/*
- * Field lists, declared once so the query and the response cannot drift apart.
- * The frontend contract is a fixed set of fields, so the queries ask for those
- * and nothing else.
- */
+// Declared once so the query and the response cannot drift apart.
 const USER_SUMMARY_FIELDS = '_id first_name last_name';
 const USER_DETAIL_FIELDS = `${USER_SUMMARY_FIELDS} location description occupation`;
 const PHOTO_FIELDS = '_id user_id file_name date_time comments';
 
-/*
- * Shaping functions.
- *
- * A Mongoose document carries more than the API promises, __v among it, and an
- * _id that is an ObjectId rather than the string the frontend compares and puts
- * in URLs. Each of these builds a plain object holding exactly the agreed
- * fields, so nothing reaches the client that was not asked for.
- */
+// A Mongoose document carries __v, and an _id that is an ObjectId rather than a
+// string. The frontend compares ids and builds URLs out of them, so responses
+// are put together field by field.
 
 function toUserSummary(user) {
   return {
-    _id: user._id.toString(),
+    _id: String(user._id),
     first_name: user.first_name,
     last_name: user.last_name,
   };
@@ -58,7 +49,7 @@ function toUserDetail(user) {
 
 function toComment(comment, author) {
   return {
-    _id: comment._id.toString(),
+    _id: String(comment._id),
     comment: comment.comment,
     date_time: comment.date_time,
     user: author,
@@ -67,27 +58,22 @@ function toComment(comment, author) {
 
 function toPhoto(photo, authorsById) {
   const comments = (photo.comments || [])
-    // A comment whose author is missing cannot be given the user object the
-    // contract requires, so it is left out rather than sent incomplete. The
-    // seeded data always resolves; this guards a database edited by hand.
+    // A comment whose author is missing cannot carry the user object the
+    // contract requires, so it is left out rather than sent incomplete.
     .filter((comment) => authorsById.has(String(comment.user_id)))
     .map((comment) => toComment(comment, authorsById.get(String(comment.user_id))));
 
   return {
-    _id: photo._id.toString(),
-    user_id: photo.user_id.toString(),
+    _id: String(photo._id),
+    user_id: String(photo.user_id),
     file_name: photo.file_name,
     date_time: photo.date_time,
     comments,
   };
 }
 
-/**
- * Look up every comment author across a set of photos in one query.
- *
- * Resolving them one comment at a time would mean a round trip per comment, so
- * the ids are collected first and fetched together.
- */
+// Comments hold a user_id, not an author. Collecting the ids first costs one
+// query for the whole page instead of a round trip per comment.
 async function loadCommentAuthors(photos) {
   const authorIds = new Set();
   for (const photo of photos) {
@@ -103,7 +89,7 @@ async function loadCommentAuthors(photos) {
   }
 
   const authors = await User.find({ _id: { $in: [...authorIds] } }, USER_SUMMARY_FIELDS).lean();
-  return new Map(authors.map((author) => [author._id.toString(), toUserSummary(author)]));
+  return new Map(authors.map((author) => [String(author._id), toUserSummary(author)]));
 }
 
 /** GET /user/list — return only _id, first_name, and last_name. */
